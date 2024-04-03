@@ -4,7 +4,9 @@
  */
 package view;
 
+import controller.UsuarioController;
 import javax.swing.JOptionPane;
+import utils.Utils;
 
 /**
  *
@@ -124,18 +126,29 @@ public class FRAutenticacao extends javax.swing.JFrame {
 
     private void btnSenhaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSenhaMouseClicked
         if (txtEmail.getText().equals("")) {
-            JOptionPane.showMessageDialog(null,"Campo 'Email' em branco");
+            JOptionPane.showMessageDialog(null, "Campo 'Email' em branco");
             return;
         }
-        
+
         if (new String(txtSenha.getPassword()).equals("")) {
-            JOptionPane.showMessageDialog(null,"Campo 'Senha' em branco");
+            JOptionPane.showMessageDialog(null, "Campo 'Senha' em branco");
             return;
+        }
+
+        // Autenticar
+        String senha = new String(txtSenha.getPassword());
+        
+        String hash = Utils.calcularMD5(senha);
+        
+        UsuarioController controller = new UsuarioController();
+        if (controller.autenticar(txtEmail.getText(),
+                hash) == true) {
+            // logar
+            this.dispose();
+            new FRMenu().setVisible(true);
         }
     }//GEN-LAST:event_btnSenhaMouseClicked
 
-    // Autenticar
-    
     /**
      * @param args the command line arguments
      */
