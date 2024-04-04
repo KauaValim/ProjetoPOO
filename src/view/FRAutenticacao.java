@@ -39,6 +39,7 @@ public class FRAutenticacao extends javax.swing.JFrame {
         btnSenha = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Autenticação");
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 204));
 
@@ -58,9 +59,7 @@ public class FRAutenticacao extends javax.swing.JFrame {
 
         btnSenha.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/key.png"))); // NOI18N
         btnSenha.setText(" Entrar");
-        btnSenha.setMinimumSize(new java.awt.Dimension(100, 39));
         btnSenha.setName("btnSenha"); // NOI18N
-        btnSenha.setPreferredSize(new java.awt.Dimension(100, 39));
         btnSenha.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnSenhaMouseClicked(evt);
@@ -87,7 +86,7 @@ public class FRAutenticacao extends javax.swing.JFrame {
                                     .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(52, 52, 52))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(btnSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnSenha)
                         .addGap(136, 136, 136))))
         );
         jPanel1Layout.setVerticalGroup(
@@ -104,7 +103,7 @@ public class FRAutenticacao extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30)
-                .addComponent(btnSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnSenha)
                 .addContainerGap(54, Short.MAX_VALUE))
         );
 

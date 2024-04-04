@@ -30,9 +30,15 @@ public class FRMenu extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
+        MICadUsuario = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
+        MISair = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
+        MIConUsuario = new javax.swing.JMenuItem();
+        jMenuItem5 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Menu");
 
         jPanel1.setBackground(new java.awt.Color(228, 113, 37));
 
@@ -56,9 +62,43 @@ public class FRMenu extends javax.swing.JFrame {
         );
 
         jMenu1.setText("Cadastro");
+        jMenu1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+
+        MICadUsuario.setText("Usuario");
+        MICadUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MICadUsuarioActionPerformed(evt);
+            }
+        });
+        jMenu1.add(MICadUsuario);
+
+        jMenuItem2.setText("???");
+        jMenu1.add(jMenuItem2);
+
+        MISair.setText("Sair");
+        MISair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MISairActionPerformed(evt);
+            }
+        });
+        jMenu1.add(MISair);
+
         jMenuBar1.add(jMenu1);
 
         jMenu2.setText("Consulta");
+        jMenu2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+
+        MIConUsuario.setText("Usuario");
+        MIConUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MIConUsuarioActionPerformed(evt);
+            }
+        });
+        jMenu2.add(MIConUsuario);
+
+        jMenuItem5.setText("???");
+        jMenu2.add(jMenuItem5);
+
         jMenuBar1.add(jMenu2);
 
         setJMenuBar(jMenuBar1);
@@ -76,6 +116,18 @@ public class FRMenu extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void MISairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MISairActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_MISairActionPerformed
+
+    private void MICadUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MICadUsuarioActionPerformed
+        new FRCadUsuario(this, rootPaneCheckingEnabled).setVisible(true);
+    }//GEN-LAST:event_MICadUsuarioActionPerformed
+
+    private void MIConUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MIConUsuarioActionPerformed
+        new FRConUsuario(this, rootPaneCheckingEnabled).setVisible(true);
+    }//GEN-LAST:event_MIConUsuarioActionPerformed
 
     /**
      * @param args the command line arguments
@@ -113,10 +165,15 @@ public class FRMenu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem MICadUsuario;
+    private javax.swing.JMenuItem MIConUsuario;
+    private javax.swing.JMenuItem MISair;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }
