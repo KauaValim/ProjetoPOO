@@ -4,7 +4,11 @@
  */
 package view;
 
+import controller.UsuarioController;
+import java.util.Date;
 import javax.swing.JOptionPane;
+import model.Usuario;
+import utils.Utils;
 
 /**
  *
@@ -173,7 +177,7 @@ public class FRCadUsuario extends javax.swing.JDialog {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -195,7 +199,22 @@ public class FRCadUsuario extends javax.swing.JDialog {
         }
 
         // Salvar no banco de dados
-
+        Usuario usu = new Usuario();
+        usu.setNome(txtNome.getText());
+        usu.setEmail(txtEmail.getText());
+        
+        String senha = new String(txtSenha.getPassword());
+        senha = Utils.calcularMD5(senha);
+        usu.setSenha(senha);
+        usu.setAtivo(ckbAtivo.isSelected());
+        
+        Date data = Utils.converterStringToDate(txtDataNasc.getText());
+        usu.setDataNasc(data);
+        
+        UsuarioController controller = new UsuarioController();
+        if(controller.adicionarUsuario(usu)) {
+            this.dispose();
+        }
     }//GEN-LAST:event_btnSalvarMouseClicked
 
     private boolean verificaCampos() {
