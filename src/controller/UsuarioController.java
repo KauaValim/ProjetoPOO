@@ -5,6 +5,7 @@
 package controller;
 
 import javax.swing.JOptionPane;
+import model.Usuario;
 import model.UsuarioDAO;
 
 /**
@@ -26,5 +27,16 @@ public class UsuarioController {
             return false;
         }
     }
+    
+    public boolean adicionarUsuario(Usuario u) {
+        if (usuarioDAO.adicionarUsuario(u)){
+            return true;
+        } else {
+            JOptionPane.showMessageDialog(null,"Usuario não cadastrado");
+            return false;
+        }
+    }
+    
+    // TODO método readForDesc()
     
 }
