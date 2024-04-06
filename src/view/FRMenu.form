@@ -6,7 +6,9 @@
       <SubComponents>
         <Menu class="javax.swing.JMenu" name="jMenu1">
           <Properties>
+            <Property name="mnemonic" type="int" value="67"/>
             <Property name="text" type="java.lang.String" value="Cadastro"/>
+            <Property name="displayedMnemonicIndex" type="int" value="0"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="12" style="1"/>
             </Property>
@@ -14,6 +16,7 @@
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="MICadUsuario">
               <Properties>
+                <Property name="mnemonic" type="int" value="85"/>
                 <Property name="text" type="java.lang.String" value="Usuario"/>
               </Properties>
               <Events>
@@ -37,6 +40,7 @@
         </Menu>
         <Menu class="javax.swing.JMenu" name="jMenu2">
           <Properties>
+            <Property name="mnemonic" type="int" value="111"/>
             <Property name="text" type="java.lang.String" value="Consulta"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="12" style="1"/>
@@ -45,6 +49,7 @@
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="MIConUsuario">
               <Properties>
+                <Property name="mnemonic" type="int" value="85"/>
                 <Property name="text" type="java.lang.String" value="Usuario"/>
               </Properties>
               <Events>

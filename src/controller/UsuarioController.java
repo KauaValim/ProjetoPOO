@@ -4,6 +4,7 @@
  */
 package controller;
 
+import java.util.List;
 import javax.swing.JOptionPane;
 import model.Usuario;
 import model.UsuarioDAO;
@@ -38,5 +39,9 @@ public class UsuarioController {
     }
     
     // TODO método readForDesc()
+
+    public List<Usuario> readForDesc(int tipo, String desc) {
+       return usuarioDAO.readForDesc(tipo, desc);
+    }
     
 }
