@@ -61,9 +61,12 @@ public class FRMenu extends javax.swing.JFrame {
                 .addGap(74, 74, 74))
         );
 
+        jMenu1.setMnemonic('C');
         jMenu1.setText("Cadastro");
+        jMenu1.setDisplayedMnemonicIndex(0);
         jMenu1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
 
+        MICadUsuario.setMnemonic('U');
         MICadUsuario.setText("Usuario");
         MICadUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -85,9 +88,11 @@ public class FRMenu extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu1);
 
+        jMenu2.setMnemonic('o');
         jMenu2.setText("Consulta");
         jMenu2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
 
+        MIConUsuario.setMnemonic('U');
         MIConUsuario.setText("Usuario");
         MIConUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

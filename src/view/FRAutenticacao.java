@@ -5,6 +5,7 @@
 package view;
 
 import controller.UsuarioController;
+import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 import utils.Utils;
 
@@ -51,11 +52,21 @@ public class FRAutenticacao extends javax.swing.JFrame {
         jLabel2.setText("Email:");
 
         txtEmail.setName("txtEmail"); // NOI18N
+        txtEmail.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtEmailKeyPressed(evt);
+            }
+        });
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
         jLabel3.setText("Senha:");
 
         txtSenha.setName("txtSenha"); // NOI18N
+        txtSenha.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtSenhaKeyPressed(evt);
+            }
+        });
 
         btnSenha.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/key.png"))); // NOI18N
         btnSenha.setText(" Entrar");
@@ -124,29 +135,20 @@ public class FRAutenticacao extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSenhaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSenhaMouseClicked
-        if (txtEmail.getText().equals("")) {
-            JOptionPane.showMessageDialog(null, "Campo 'Email' em branco");
-            return;
-        }
-
-        if (new String(txtSenha.getPassword()).equals("")) {
-            JOptionPane.showMessageDialog(null, "Campo 'Senha' em branco");
-            return;
-        }
-
-        // Autenticar
-        String senha = new String(txtSenha.getPassword());
-        
-        String hash = Utils.calcularMD5(senha);
-        
-        UsuarioController controller = new UsuarioController();
-        if (controller.autenticar(txtEmail.getText(),
-                hash) == true) {
-            // logar
-            this.dispose();
-            new FRMenu().setVisible(true);
-        }
+        logar();
     }//GEN-LAST:event_btnSenhaMouseClicked
+
+    private void txtSenhaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSenhaKeyPressed
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            logar();
+        }
+    }//GEN-LAST:event_txtSenhaKeyPressed
+
+    private void txtEmailKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEmailKeyPressed
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            txtSenha.requestFocus();
+        }
+    }//GEN-LAST:event_txtEmailKeyPressed
 
     /**
      * @param args the command line arguments
@@ -192,4 +194,29 @@ public class FRAutenticacao extends javax.swing.JFrame {
     private javax.swing.JTextField txtEmail;
     private javax.swing.JPasswordField txtSenha;
     // End of variables declaration//GEN-END:variables
+
+    private void logar() {
+        if (txtEmail.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Campo 'Email' em branco");
+            return;
+        }
+
+        if (new String(txtSenha.getPassword()).equals("")) {
+            JOptionPane.showMessageDialog(null, "Campo 'Senha' em branco");
+            return;
+        }
+
+        // Autenticar
+        String senha = new String(txtSenha.getPassword());
+        
+        String hash = Utils.calcularMD5(senha);
+        
+        UsuarioController controller = new UsuarioController();
+        if (controller.autenticar(txtEmail.getText(),
+                hash) == true) {
+            // logar
+            this.dispose();
+            new FRMenu().setVisible(true);
+        }
+    }
 }
