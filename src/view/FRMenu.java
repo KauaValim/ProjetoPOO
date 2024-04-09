@@ -63,7 +63,6 @@ public class FRMenu extends javax.swing.JFrame {
 
         jMenu1.setMnemonic('C');
         jMenu1.setText("Cadastro");
-        jMenu1.setDisplayedMnemonicIndex(0);
         jMenu1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
 
         MICadUsuario.setMnemonic('U');
@@ -78,6 +77,7 @@ public class FRMenu extends javax.swing.JFrame {
         jMenuItem2.setText("???");
         jMenu1.add(jMenuItem2);
 
+        MISair.setMnemonic('S');
         MISair.setText("Sair");
         MISair.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
