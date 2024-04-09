@@ -8,7 +8,6 @@
           <Properties>
             <Property name="mnemonic" type="int" value="67"/>
             <Property name="text" type="java.lang.String" value="Cadastro"/>
-            <Property name="displayedMnemonicIndex" type="int" value="0"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="12" style="1"/>
             </Property>
@@ -30,6 +29,7 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="MISair">
               <Properties>
+                <Property name="mnemonic" type="int" value="83"/>
                 <Property name="text" type="java.lang.String" value="Sair"/>
               </Properties>
               <Events>
