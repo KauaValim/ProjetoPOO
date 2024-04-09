@@ -336,10 +336,16 @@ public class FRUPDUsuario extends javax.swing.JDialog {
         Usuario usu = new Usuario();
         usu.setNome(txtNome.getText());
         usu.setEmail(txtEmail.getText());
-
-        String senha = new String(txtSenha.getPassword());
-        senha = Utils.calcularMD5(senha);
+	
+	String senha = "";
+        if(txtSenha.isEditable()) {
+            senha = new String(txtSenha.getPassword());
+            senha = Utils.calcularMD5(senha);
+        } else {
+            senha = new String(txtSenha.getPassword());
+        }
         usu.setSenha(senha);
+
         usu.setAtivo(ckbAtivo.isSelected());
 
         Date data = Utils.converterStringToDate(txtDataNasc.getText());
