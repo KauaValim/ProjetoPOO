@@ -21,7 +21,7 @@ public class UsuarioController {
     }
     
     public boolean autenticar(String email, String senha) {
-        if (usuarioDAO.autenticar(email, senha)) {
+        if (usuarioDAO.autenticar(email, senha)){
             return true;
         } else {
             JOptionPane.showMessageDialog(null, "Usuário ou senha incorreta");
@@ -31,6 +31,24 @@ public class UsuarioController {
     
     public boolean adicionarUsuario(Usuario u) {
         if (usuarioDAO.adicionarUsuario(u)){
+            return true;
+        } else {
+            JOptionPane.showMessageDialog(null,"Usuario não cadastrado");
+            return false;
+        }
+    }
+    
+    public boolean alterarUsuario(Usuario u, Long pk) {
+        if (usuarioDAO.alterarUsuario(u, pk)){
+            return true;
+        } else {
+            JOptionPane.showMessageDialog(null,"Usuario não cadastrado");
+            return false;
+        }
+    }
+    
+    public boolean excluirUsuario(Usuario u, Long pk) {
+        if (usuarioDAO.excluirUsuario(u, pk)){
             return true;
         } else {
             JOptionPane.showMessageDialog(null,"Usuario não cadastrado");
