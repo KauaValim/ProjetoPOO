@@ -334,10 +334,25 @@ public class FRUPDUsuario extends javax.swing.JDialog {
 
         // Salvar no banco de dados
         Usuario usu = new Usuario();
-        usu.setNome(txtNome.getText());
-        usu.setEmail(txtEmail.getText());
-	
-	String senha = "";
+        Long pk = Long.valueOf(txtCodigo.getText());
+        String nome = txtNome.getText();
+        String email = txtEmail.getText();
+        String senha = "";
+        boolean ativo = ckbAtivo.isSelected();
+        Date dataDb = usu.getDataNasc();
+        
+        if(!nome.equals(txtNome.getText())) {
+            usu.setNome(nome);
+        } else {
+            usu.setNome(txtNome.getText());
+        }
+        
+        if(!email.equals(txtEmail.getText())) {
+            usu.setEmail(email);
+        } else {
+            usu.setEmail(txtEmail.getText());
+        }
+
         if(txtSenha.isEditable()) {
             senha = new String(txtSenha.getPassword());
             senha = Utils.calcularMD5(senha);
@@ -345,14 +360,22 @@ public class FRUPDUsuario extends javax.swing.JDialog {
             senha = new String(txtSenha.getPassword());
         }
         usu.setSenha(senha);
-
-        usu.setAtivo(ckbAtivo.isSelected());
-
+        
+        if(ativo != ckbAtivo.isSelected()) {
+            usu.setAtivo(ativo);
+        } else {
+            usu.setAtivo(ckbAtivo.isSelected());
+        }
+        
         Date data = Utils.converterStringToDate(txtDataNasc.getText());
-        usu.setDataNasc(data);
+        if(dataDb != data) {
+            usu.setDataNasc(data);
+        } else {
+            usu.setDataNasc(dataDb);
+        }
 
         UsuarioController controller = new UsuarioController();
-        if(controller.adicionarUsuario(usu)) {
+        if(controller.alterarUsuario(usu, pk)) {
             this.dispose();
         }
     }//GEN-LAST:event_btnSalvarMouseClicked
@@ -374,7 +397,12 @@ public class FRUPDUsuario extends javax.swing.JDialog {
     }//GEN-LAST:event_txtConfSenhaKeyPressed
 
     private void btnExcluirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnExcluirMouseClicked
-        // TODO add your handling code here:
+        UsuarioController controller = new UsuarioController();
+        Usuario usu = new Usuario();
+        Long pk = Long.valueOf(txtCodigo.getText());
+        if(controller.excluirUsuario(usu, pk)) {
+            this.dispose();
+        }
     }//GEN-LAST:event_btnExcluirMouseClicked
 
     private void btnExcluirKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnExcluirKeyPressed
@@ -421,7 +449,7 @@ public class FRUPDUsuario extends javax.swing.JDialog {
             return false;
         }
         
-        if (!txtEmail.getText().matches("^[a-zA-Z._]+@[a-zA-Z._]+.[a-zA-Z._]+$")) {
+        if (!txtEmail.getText().matches("^[a-zA-Z0-9._]+@[a-zA-Z._]+.[a-zA-Z._]+$")) {
             JOptionPane.showMessageDialog(null, "Campo 'Email' possui formato inválido");
             return false;
         }
