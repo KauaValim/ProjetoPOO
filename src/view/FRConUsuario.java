@@ -21,6 +21,7 @@ public class FRConUsuario extends javax.swing.JDialog {
     public FRConUsuario(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -204,6 +205,8 @@ public class FRConUsuario extends javax.swing.JDialog {
             telaUPD.setPkUsuario(pk);
             telaUPD.carregarUsuario();
             telaUPD.setVisible(true);
+            
+            pesquisar();
         }
     }//GEN-LAST:event_btnAlterarMouseClicked
 

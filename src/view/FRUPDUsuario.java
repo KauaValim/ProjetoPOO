@@ -17,6 +17,7 @@ import utils.Utils;
  * @author S.Lucas
  */
 public class FRUPDUsuario extends javax.swing.JDialog {
+
     private int pkUsuario;
     private String senhaUsuario;
 
@@ -27,9 +28,7 @@ public class FRUPDUsuario extends javax.swing.JDialog {
     public void setSenhaUsuario(String senhaUsuario) {
         this.senhaUsuario = senhaUsuario;
     }
-    
-    
-    
+
     public void setPkUsuario(int pk) {
         this.pkUsuario = pk;
     }
@@ -40,6 +39,7 @@ public class FRUPDUsuario extends javax.swing.JDialog {
     public FRUPDUsuario(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -78,7 +78,7 @@ public class FRUPDUsuario extends javax.swing.JDialog {
         jPanel1.setPreferredSize(new java.awt.Dimension(450, 490));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/add_user.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/alter_user.png"))); // NOI18N
         jLabel1.setText("Alterar Usuário");
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -297,31 +297,31 @@ public class FRUPDUsuario extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtNomeKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNomeKeyPressed
-        if(evt.getKeyCode() == KeyEvent.VK_ENTER) {
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             txtEmail.requestFocus();
         }
     }//GEN-LAST:event_txtNomeKeyPressed
 
     private void txtEmailKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEmailKeyPressed
-        if(evt.getKeyCode() == KeyEvent.VK_ENTER) {
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             txtSenha.requestFocus();
         }
     }//GEN-LAST:event_txtEmailKeyPressed
 
     private void txtSenhaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSenhaKeyPressed
-        if(evt.getKeyCode() == KeyEvent.VK_ENTER) {
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             txtConfSenha.requestFocus();
         }
     }//GEN-LAST:event_txtSenhaKeyPressed
 
     private void ckbAtivoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ckbAtivoKeyPressed
-        if(evt.getKeyCode() == KeyEvent.VK_ENTER) {
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             btnSalvar.requestFocus();
         }
     }//GEN-LAST:event_ckbAtivoKeyPressed
 
     private void txtDataNascKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDataNascKeyPressed
-        if(evt.getKeyCode() == KeyEvent.VK_ENTER) {
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             ckbAtivo.requestFocus();
         }
     }//GEN-LAST:event_txtDataNascKeyPressed
@@ -334,54 +334,54 @@ public class FRUPDUsuario extends javax.swing.JDialog {
 
         // Salvar no banco de dados
         Usuario usu = new Usuario();
-        Long pk = Long.valueOf(txtCodigo.getText());
+        usu.setPkUsuario(pkUsuario);
         String nome = txtNome.getText();
         String email = txtEmail.getText();
         String senha = "";
         boolean ativo = ckbAtivo.isSelected();
         Date dataDb = usu.getDataNasc();
-        
-        if(!nome.equals(txtNome.getText())) {
+
+        if (!nome.equals(txtNome.getText())) {
             usu.setNome(nome);
         } else {
             usu.setNome(txtNome.getText());
         }
-        
-        if(!email.equals(txtEmail.getText())) {
+
+        if (!email.equals(txtEmail.getText())) {
             usu.setEmail(email);
         } else {
             usu.setEmail(txtEmail.getText());
         }
 
-        if(txtSenha.isEditable()) {
+        if (txtSenha.isEditable()) {
             senha = new String(txtSenha.getPassword());
             senha = Utils.calcularMD5(senha);
         } else {
             senha = new String(txtSenha.getPassword());
         }
         usu.setSenha(senha);
-        
-        if(ativo != ckbAtivo.isSelected()) {
+
+        if (ativo != ckbAtivo.isSelected()) {
             usu.setAtivo(ativo);
         } else {
             usu.setAtivo(ckbAtivo.isSelected());
         }
-        
+
         Date data = Utils.converterStringToDate(txtDataNasc.getText());
-        if(dataDb != data) {
+        if (dataDb != data) {
             usu.setDataNasc(data);
         } else {
             usu.setDataNasc(dataDb);
         }
 
         UsuarioController controller = new UsuarioController();
-        if(controller.alterarUsuario(usu, pk)) {
+        if (controller.alterarUsuario(usu)) {
             this.dispose();
         }
     }//GEN-LAST:event_btnSalvarMouseClicked
 
     private void btnSalvarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnSalvarKeyPressed
-        if(evt.getKeyCode() == KeyEvent.VK_ENTER || evt.getKeyCode() == KeyEvent.VK_SPACE) {
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER || evt.getKeyCode() == KeyEvent.VK_SPACE) {
             btnSalvarMouseClicked(null);
         }
     }//GEN-LAST:event_btnSalvarKeyPressed
@@ -391,17 +391,19 @@ public class FRUPDUsuario extends javax.swing.JDialog {
     }//GEN-LAST:event_btnCancelarMouseClicked
 
     private void txtConfSenhaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtConfSenhaKeyPressed
-        if(evt.getKeyCode() == KeyEvent.VK_ENTER) {
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             txtDataNasc.requestFocus();
         }
     }//GEN-LAST:event_txtConfSenhaKeyPressed
 
     private void btnExcluirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnExcluirMouseClicked
-        UsuarioController controller = new UsuarioController();
-        Usuario usu = new Usuario();
-        Long pk = Long.valueOf(txtCodigo.getText());
-        if(controller.excluirUsuario(usu, pk)) {
-            this.dispose();
+        int resposta = JOptionPane.showConfirmDialog(null, "Deseja excluir o usuário?", "Confirmação", JOptionPane.YES_NO_OPTION);
+
+        if (resposta == JOptionPane.YES_NO_OPTION) {
+            UsuarioController controller = new UsuarioController();
+            if (controller.excluirUsuario(pkUsuario)) {
+                this.dispose();
+            }
         }
     }//GEN-LAST:event_btnExcluirMouseClicked
 
@@ -410,13 +412,13 @@ public class FRUPDUsuario extends javax.swing.JDialog {
     }//GEN-LAST:event_btnExcluirKeyPressed
 
     private void btnAlterarSenhaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAlterarSenhaMouseClicked
-        if(btnAlterarSenha.getText().equals("Alterar Senha")) {
+        if (btnAlterarSenha.getText().equals("Alterar Senha")) {
             txtSenha.setEditable(true);
             txtConfSenha.setEditable(true);
             txtSenha.setBackground(Color.white);
             txtConfSenha.setBackground(Color.white);
             btnAlterarSenha.setText("Cancelar Alteração");
-            
+
             txtSenha.setText("");
             txtConfSenha.setText("");
         } else {
@@ -425,12 +427,12 @@ public class FRUPDUsuario extends javax.swing.JDialog {
             txtSenha.setBackground(Color.gray);
             txtConfSenha.setBackground(Color.gray);
             btnAlterarSenha.setText("Alterar Senha");
-            
+
             txtSenha.setText(getSenhaUsuario());
             txtConfSenha.setText(getSenhaUsuario());
         }
-        
-        
+
+
     }//GEN-LAST:event_btnAlterarSenhaMouseClicked
 
     private boolean verificaCampos() {
@@ -443,54 +445,53 @@ public class FRUPDUsuario extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(null, "Campo 'Nome' possui caracteres inválidos");
             return false;
         }
-        
-        if(txtEmail.getText().equals("")) {
+
+        if (txtEmail.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Campo 'Email' em branco");
             return false;
         }
-        
+
         if (!txtEmail.getText().matches("^[a-zA-Z0-9._]+@[a-zA-Z._]+.[a-zA-Z._]+$")) {
             JOptionPane.showMessageDialog(null, "Campo 'Email' possui formato inválido");
             return false;
         }
-        
+
         if (!txtDataNasc.getText().matches("^[0-9]{2}/[0-9]{2}/[0-9]{4}$")) {
             JOptionPane.showMessageDialog(null, "Campo 'Data Nascimento' possui formato inválido Ex: 01/01/2000");
             return false;
         }
-        
+
         String senha = new String(txtSenha.getPassword());
-        
-        if(senha.length() < 8) {
-            JOptionPane.showMessageDialog(null,"Campo 'Senha' deve ser maior que 8 caracteres");
+
+        if (senha.length() < 8) {
+            JOptionPane.showMessageDialog(null, "Campo 'Senha' deve ser maior que 8 caracteres");
             return false;
         }
-        
-        if(!senha.equals(new String(txtConfSenha.getPassword()))) {
+
+        if (!senha.equals(new String(txtConfSenha.getPassword()))) {
             JOptionPane.showMessageDialog(null, "As senhas não são iguais");
             return false;
         }
-        
 
         return true;
-    }    
-    
+    }
+
     public void carregarUsuario() {
         UsuarioController controller = new UsuarioController();
         Usuario usu = controller.readForPk(pkUsuario);
-        
+
         String codigo = String.valueOf(usu.getPkUsuario());
         txtCodigo.setText(codigo);
         txtNome.setText(usu.getNome());
         txtEmail.setText(usu.getEmail());
         txtDataNasc.setText(
-        Utils.converterDateToString(usu.getDataNasc()));
+                Utils.converterDateToString(usu.getDataNasc()));
         txtSenha.setText(usu.getSenha());
         txtConfSenha.setText(usu.getSenha());
         setSenhaUsuario(usu.getSenha());
         ckbAtivo.setSelected(usu.isAtivo());
     }
-    
+
     /**
      * @param args the command line arguments
      */
