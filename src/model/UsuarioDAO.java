@@ -70,7 +70,7 @@ public class UsuarioDAO {
         return false;
     }
     
-    public boolean alterarUsuario(Usuario u, Long pk) {
+    public boolean alterarUsuario(Usuario u) {
         String sql = "UPDATE TBUSUARIO SET nome = ?, email = ?, senha = ?, dataNasc = ?, ativo = ? WHERE pkusuario = ?";
 
         GerenciadorConexao gerenciador = new GerenciadorConexao();
@@ -84,7 +84,7 @@ public class UsuarioDAO {
             stmt.setString(3, u.getSenha());
             stmt.setDate(4, new java.sql.Date(u.getDataNasc().getTime()));
             stmt.setBoolean(5, u.isAtivo());
-            stmt.setLong(6, pk);
+            stmt.setLong(6, u.getPkUsuario());
             stmt.executeUpdate();
             JOptionPane.showMessageDialog(null, "Usuario: " + u.getNome() + " inserido com sucesso!");
             return true;
@@ -97,8 +97,8 @@ public class UsuarioDAO {
         return false;
     }
     
-    public boolean excluirUsuario(Usuario u, Long pk) {
-        String sql = "DELETE FROM TBUSUARIO WHERE pkusuario = ?";
+    public boolean excluirUsuario(int pkUsuario) {
+        String sql = "DELETE FROM tbusuario WHERE pkusuario = ?";
 
         GerenciadorConexao gerenciador = new GerenciadorConexao();
         Connection con = gerenciador.getConexao();
@@ -106,7 +106,7 @@ public class UsuarioDAO {
 
         try {
             stmt = con.prepareStatement(sql);         
-            stmt.setLong(1, pk);
+            stmt.setLong(1, pkUsuario);
             stmt.executeUpdate();
             JOptionPane.showMessageDialog(null, "Usuario excluído com sucesso!");
             return true;

@@ -38,20 +38,20 @@ public class UsuarioController {
         }
     }
     
-    public boolean alterarUsuario(Usuario u, Long pk) {
-        if (usuarioDAO.alterarUsuario(u, pk)){
+    public boolean alterarUsuario(Usuario u) {
+        if (usuarioDAO.alterarUsuario(u)){
             return true;
         } else {
-            JOptionPane.showMessageDialog(null,"Usuario não cadastrado");
+            JOptionPane.showMessageDialog(null,"Usuario não alterado");
             return false;
         }
     }
     
-    public boolean excluirUsuario(Usuario u, Long pk) {
-        if (usuarioDAO.excluirUsuario(u, pk)){
+    public boolean excluirUsuario(int pkUsuario) {
+        if (usuarioDAO.excluirUsuario(pkUsuario)){
             return true;
         } else {
-            JOptionPane.showMessageDialog(null,"Usuario não cadastrado");
+            JOptionPane.showMessageDialog(null,"Usuario não excluído");
             return false;
         }
     }
